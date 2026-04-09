@@ -1,65 +1,116 @@
-import Image from "next/image";
+'use client';
+import { useState, useMemo } from 'react';
+import TopNav from '@/components/TopNav';
+import LeftSidebar from '@/components/LeftSidebar';
+import RightSidebar from '@/components/RightSidebar';
+import MatchRow from '@/components/MatchRow';
+import { Game } from '@/types';
+import gamesData from '@/data/games.json';
 
-export default function Home() {
+const games = gamesData as Game[];
+
+const PROMO_CARDS = [
+  { image: '/images/promo-nobag.png', title: 'Sports welcome bonus.', bold: '100% up to KES 5,000', sub: 'on first deposit.', color: '#16a34a' },
+  { image: '/images/promo.png', title: 'Early Payout', bold: 'on a 2-goal or', sub: '20-point lead.', color: '#0ea5e9' },
+  { image: '/images/promo-nobag.png', title: 'Sports welcome bonus.', bold: '100% up to KES 5,000', sub: 'on first deposit.', color: '#16a34a' },
+];
+
+const CONTENT_TABS = ['Highlights', 'Live', 'Upcoming'];
+
+export default function HomePage() {
+  const [activeTab, setActiveTab] = useState('Highlights');
+
+  // Group games by competition
+  const groupedGames = useMemo(() => {
+    return games.reduce<Record<string, Game[]>>((acc, g) => {
+      if (!acc[g.competition_name]) acc[g.competition_name] = [];
+      acc[g.competition_name].push(g);
+      return acc;
+    }, {});
+  }, []);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div>
+      <TopNav />
+      <div className="page-layout">
+
+        <LeftSidebar />
+
+        
+        <main className="main-content">
+
+        <div className="promo-strip">
+  {PROMO_CARDS.map((p, i) => (
+    <div key={i} className="promo-card">
+      
+      <div className="promo-content">
+        <div className="promo-text">{p.title}</div>
+        <div className="promo-text" style={{ color: p.color }}>
+          {p.bold}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+        <div className="promo-sub">{p.sub}</div>
+      </div>
+
+      <img src={p.image} alt="promo" className="promo-image" />
+
+    </div>
+  ))}
+</div>
+          {/* Highlights / Live / Upcoming Tabs */}
+          <div className="content-tabs">
+            {CONTENT_TABS.map((tab) => (
+              <button
+                key={tab}
+                className={`content-tab ${activeTab === tab ? 'active' : ''}`}
+                onClick={() => setActiveTab(tab)}
+              >
+                {tab === 'Live' && (
+                  <span style={{ width: 7, height: 7, borderRadius: '50%', background: activeTab === 'Live' ? '#fff' : '#ef4444', display: 'inline-block' }} />
+                )}
+                {tab}
+              </button>
+            ))}
+          </div>
+
+          {/* Match Sections grouped by competition */}
+          {Object.entries(groupedGames).map(([competition, compGames]) => (
+            <div key={competition} className="sport-block">
+              {/* Sport header — dark navy bar */}
+              <div className="sport-header">
+                <span>⚽</span>
+                <span>Soccer</span>
+              </div>
+
+              {/* Competition label row */}
+              <div className="competition-row">
+                <span>{competition}</span>
+                <a>›</a>
+              </div>
+
+              {/* Column header labels */}
+              <div className="odds-col-headers">
+                <div className="col-header">1</div>
+                <div className="col-header">X</div>
+                <div className="col-header">2</div>
+                <div className="col-header-div" />
+                <div className="col-header">1 or X</div>
+                <div className="col-header">1 or 2</div>
+                <div className="col-header">X or 2</div>
+                <div className="col-header-div" />
+                <div className="col-header">Yes</div>
+                <div className="col-header">No</div>
+                <div className="col-header col-header-sm" />
+              </div>
+
+              {/* Match rows */}
+              {compGames.map((game) => (
+                <MatchRow key={game.parent_match_id} game={game} />
+              ))}
+            </div>
+          ))}
+        </main>
+        <RightSidebar />
+      </div>
     </div>
   );
 }
