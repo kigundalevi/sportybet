@@ -1,11 +1,3 @@
-// ============================================================
-// UTILITY HELPERS
-// ============================================================
-
-/**
- * Format a UTC ISO string into a readable local date/time.
- * e.g. "2026-04-04T19:00:00Z" → "Sat 04 Apr · 22:00"
- */
 export function formatMatchTime(isoString: string): string {
   const date = new Date(isoString);
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];

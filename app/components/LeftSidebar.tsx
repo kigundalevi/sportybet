@@ -1,16 +1,16 @@
 'use client';
 
 const QUICK_ACTIONS = [
-  { icon: '📋', label: 'My Bets' },
-  { icon: '👤', label: 'Profile' },
-  { icon: '💬', label: 'Chat us' },
-  { icon: '👥', label: 'Join Affiliate' },
-  { icon: '🎁', label: 'Promos' },
+  { icon: <ion-icon name="list-outline"></ion-icon>, label: 'MyBets' },
+  { icon: <ion-icon name="person-circle-outline"></ion-icon>, label: 'Profile' },
+  { icon: <ion-icon name="chatbubbles-outline"></ion-icon>, label: 'Chat us' },
+  { icon: <ion-icon name="people-outline"></ion-icon>, label: 'Join Affiliate' },
+  { icon: <ion-icon name="flame"></ion-icon>, label: 'Promos' },
 ];
 
 const TOP_GAMES = [
   { id: 'aviator', label: '', cls: 'game-card-aviator', image: '/images/AVIATOR.webp' },
-  { id: 'jetx',    label: '',    cls: 'game-card-jetx',    image: '/images/JET X.webp' },
+  { id: 'jetx',    label: '',    cls: 'game-card-jetx',    image: '/images/jetx.webp' },
   { id: 'nav',     label: '', cls: 'game-card-nav',   image: '/images/navigator.webp' },
 ];
 

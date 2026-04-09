@@ -11,7 +11,7 @@ const games = gamesData as Game[];
 
 const PROMO_CARDS = [
   { image: '/images/promo-nobag.png', title: 'Sports welcome bonus.', bold: '100% up to KES 5,000', sub: 'on first deposit.', color: '#16a34a' },
-  { image: '/images/promo.png', title: 'Early Payout', bold: 'on a 2-goal or', sub: '20-point lead.', color: '#0ea5e9' },
+  { image: '/images/promo.png', title: 'Early Payout', bold: 'on a 2-goal or', sub: '20-point lead.', color: '#16a34a' },
   { image: '/images/promo-nobag.png', title: 'Sports welcome bonus.', bold: '100% up to KES 5,000', sub: 'on first deposit.', color: '#16a34a' },
 ];
 
@@ -33,16 +33,11 @@ export default function HomePage() {
     <div>
       <TopNav />
       <div className="page-layout">
-
-        <LeftSidebar />
-
-        
+        <LeftSidebar /> 
         <main className="main-content">
-
         <div className="promo-strip">
   {PROMO_CARDS.map((p, i) => (
-    <div key={i} className="promo-card">
-      
+    <div key={i} className="promo-card">     
       <div className="promo-content">
         <div className="promo-text">{p.title}</div>
         <div className="promo-text" style={{ color: p.color }}>
@@ -50,9 +45,7 @@ export default function HomePage() {
         </div>
         <div className="promo-sub">{p.sub}</div>
       </div>
-
       <img src={p.image} alt="promo" className="promo-image" />
-
     </div>
   ))}
 </div>
@@ -77,31 +70,10 @@ export default function HomePage() {
             <div key={competition} className="sport-block">
               {/* Sport header — dark navy bar */}
               <div className="sport-header">
-                <span>⚽</span>
+                
+                <span><ion-icon name="football-outline" style={{ fontSize: '30px' }}></ion-icon></span>
                 <span>Soccer</span>
               </div>
-
-              {/* Competition label row */}
-              <div className="competition-row">
-                <span>{competition}</span>
-                <a>›</a>
-              </div>
-
-              {/* Column header labels */}
-              <div className="odds-col-headers">
-                <div className="col-header">1</div>
-                <div className="col-header">X</div>
-                <div className="col-header">2</div>
-                <div className="col-header-div" />
-                <div className="col-header">1 or X</div>
-                <div className="col-header">1 or 2</div>
-                <div className="col-header">X or 2</div>
-                <div className="col-header-div" />
-                <div className="col-header">Yes</div>
-                <div className="col-header">No</div>
-                <div className="col-header col-header-sm" />
-              </div>
-
               {/* Match rows */}
               {compGames.map((game) => (
                 <MatchRow key={game.parent_match_id} game={game} />

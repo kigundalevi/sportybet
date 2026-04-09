@@ -91,13 +91,13 @@ export default function MatchRow({ game }: MatchRowProps) {
         {/* BTTS */}
         <OddCell odd={yes} marketName="BTTS" outcomeId="74" subTypeId={29} label="Yes" />
         <OddCell odd={no}  marketName="BTTS" outcomeId="76" subTypeId={29} label="No" />
-      </div>
-
       {/* More markets */}
       <button className="more-btn">
         <span>{game.total_markets}+</span>
         <span>More</span>
       </button>
+      </div>
+
     </div>
   );
 }

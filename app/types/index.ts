@@ -1,14 +1,11 @@
-// ============================================================
-// TYPES — The shape of our data, derived directly from games.json
-// ============================================================
 
 export interface Odd {
   event_odd_id: number;
   parent_match_id: number;
   sub_type_id: number;
   outcome_id: string;
-  outcome_name: string;       // "1", "X", "2"
-  outcome_alias: string;      // "Real Madrid", "draw", "Barcelona"
+  outcome_name: string;
+  outcome_alias: string;
   market_name: string;
   odd_value: number;
   prev_odd_value: number;
@@ -28,7 +25,7 @@ export interface Game {
   parent_match_id: number;
   home_team: string;
   away_team: string;
-  start_time: string;          // ISO timestamp
+  start_time: string;
   sport_name: string;
   competition_id: number;
   competition_name: string;
@@ -40,10 +37,6 @@ export interface Game {
   total_markets: number;
   markets: Market[];
 }
-
-// ============================================================
-// BET SLIP TYPES — What we store when a user clicks an odd
-// ============================================================
 
 export interface BetSelection {
   matchId: number;
