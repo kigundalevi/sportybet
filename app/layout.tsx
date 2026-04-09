@@ -3,7 +3,7 @@ import './globals.css';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: 'SportyBet — Sports Betting',
+  title: 'Solamibet\n — Sports Betting',
   description: 'Bet on Soccer, Live events and more.',
 };
 
