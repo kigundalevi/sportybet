@@ -1,5 +1,8 @@
 'use client';
-import { useState } from 'react';
+
+interface TopNavProps {
+  onMenuClick?: () => void;
+}
 
 const TABS = [
   { id: 'home',    label: 'Home',    icon: <ion-icon name="home-outline" /> },
@@ -9,10 +12,18 @@ const TABS = [
   { id: 'league',  label: 'League',  icon: <ion-icon name="cash-outline" style={{ color: 'green' }} /> },
 ];
 
-export default function TopNav() {
+import { useState } from 'react';
+
+export default function TopNav({ onMenuClick }: TopNavProps) {
   const [active, setActive] = useState('home');
+
   return (
     <nav className="top-nav">
+      {/* Hamburger — mobile only */}
+      <button className="nav-hamburger" onClick={onMenuClick} aria-label="Open menu">
+        <ion-icon name="menu-outline" />
+      </button>
+
       {TABS.map((tab) => (
         <button
           key={tab.id}
@@ -21,12 +32,13 @@ export default function TopNav() {
         >
           {tab.live ? (
             <>
-              {/* red live badge */}
               <span style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 background: '#dc2626', borderRadius: 4, padding: '1px 5px',
                 fontSize: 9, fontWeight: 700, color: '#fff', letterSpacing: '0.04em',
-              }}>LIVE</span>
+              }}>
+                LIVE
+              </span>
               {tab.label}
             </>
           ) : (

@@ -127,7 +127,7 @@ export default function RightSidebar() {
           <>
             {selections.length === 0 ? (
               <div className="betslip-empty">
-                <span style={{ fontSize: 40 }}>🎯</span>
+                <span style={{ fontSize: 40 }}></span>
                 <p style={{ color: '#6b7280', fontSize: 13 }}>
                   No bets selected.<br />Click any odds to add to your slip.
                 </p>
@@ -200,7 +200,7 @@ export default function RightSidebar() {
 
         {activeTab === 'jenga' && (
           <div className="betslip-empty">
-            <span style={{ fontSize: 40 }}>🎲</span>
+            <span style={{ fontSize: 40 }}></span>
             <p style={{ color: '#6b7280' }}>No Jenga bets placed yet.</p>
           </div>
         )}

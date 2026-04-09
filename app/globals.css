@@ -83,7 +83,7 @@ input  { font-family: var(--font); }
 /* LAYOUT */
 .page-layout {
   display: grid;
-  grid-template-columns: 240px 1fr 300px;
+  grid-template-columns: 300px 1fr 300px;
   min-height: calc(100vh - 56px);
 }
 
@@ -94,6 +94,7 @@ input  { font-family: var(--font); }
   padding: 12px 10px;
   overflow-y: auto;
   position: sticky;
+  width: 300px;
   top: 56px;
   height: calc(100vh - 56px);
 }
@@ -112,7 +113,13 @@ input  { font-family: var(--font); }
 
 /* SEARCH */
 .search-wrap { position: relative; margin-bottom: 10px; }
-.search-wrap svg { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.search-wrap svg { position: absolute;
+   left: 9px; 
+   top: 50%; 
+   transform: translateY(-50%); 
+   color: var(--text-muted); 
+   pointer-events: none; 
+}
 .search-input {
   width: 100%;
   padding: 8px 10px 8px 32px;
@@ -121,7 +128,7 @@ input  { font-family: var(--font); }
   background: var(--bg-page);
   color: var(--text-primary);
   font-size: 13px;
-  outline: none;
+  outline: solid 1px var(--border);
   transition: border-color 0.15s;
 }
 .search-input:focus { border-color: var(--green); }
@@ -152,7 +159,9 @@ input  { font-family: var(--font); }
 }
 .qa-btn:hover { color: var(--green); }
 .qa-icon {
-   font-size: 20px; 
+   font-size: 25px; 
+   font-weight: 200;
+   color: var(--text-primary);
    background: var(--bg-white);
    padding: 8px;
    border-radius: 12px;
@@ -229,9 +238,9 @@ input  { font-family: var(--font); }
   cursor: pointer; transition: box-shadow 0.15s; overflow: hidden;
 }
 .promo-card:hover { box-shadow: var(--shadow-md); }
-.promo-text { font-size: 18px; font-weight: 900; color: var(--text-primary); line-height: 1.45; }
+.promo-text { font-size: 16px; font-weight: 900; color: var(--text-primary); line-height: 1.45; }
 .promo-text .highlight { color: var(--green); }
-.promo-sub { font-size: 18px; color: var(--text-secondary); font-weight: 900; }
+.promo-sub { font-size: 16px; color: var(--text-secondary); font-weight: 900; }
 .promo-image {
   position: absolute;
   right: -10px;
@@ -242,15 +251,34 @@ input  { font-family: var(--font); }
 }
 
 /* CONTENT TABS */
-.content-tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+.content-tabs {
+  display: flex;
+  margin-bottom: 12px;
+  overflow: hidden; 
+}
+
+.content-tab:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.content-tab:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.content-tab:not(:first-child) {
+  border-left: none;
+}
 .content-tab {
   padding: 6px 18px;
-  border-radius: 20px;
   border: 1px solid var(--border);
-  background: var(--bg-white);
-  color: var(--text-secondary);
-  font-size: 13px; font-weight: 500;
-  display: flex; align-items: center; gap: 5px;
+  background: var(--bg-page);
+  color: var(--bg-nav);
+  font-size: 13px; 
+  font-weight: 600;
+  display: flex; 
+  align-items: center;
   transition: all 0.15s;
 }
 .content-tab:hover { border-color: var(--green); color: var(--green); }
@@ -275,9 +303,8 @@ input  { font-family: var(--font); }
   left: 0;
   top: 0;
   height: 100%;
-  width: 4px;              
+  width: 8px;              
   background: #16a34a;     
-  border-radius: 0 4px 4px 0;
 }
 .sport-header {
   padding-left: 14px; 
@@ -329,7 +356,8 @@ input  { font-family: var(--font); }
 .odd-btn {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   min-width: 52px; height: 40px;
-  padding: 0 4px;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   background: var(--bg-white);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -339,8 +367,8 @@ input  { font-family: var(--font); }
 .odd-btn.selected { background: var(--green); border-color: var(--green-hover); }
 .odd-btn.selected .odd-label,
 .odd-btn.selected .odd-value { color: #fff; }
-.odd-label { font-size: 9px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.03em; text-transform: uppercase; line-height: 1; }
-.odd-value { font-size: 13px; font-weight: 700; color: var(--text-primary); line-height: 1.2; }
+.odd-label { font-size: 14px; font-weight: 800; color: var(--text-primary); letter-spacing: 0.03em; line-height: 1; margin-bottom: 6px; }
+.odd-value { font-size: 9px; font-weight: 700; color: var(--text-primary); line-height: 1.2; }
 
 .more-btn {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -392,7 +420,52 @@ input  { font-family: var(--font); }
 .col-header-div { width: 1px; margin: 0 2px; }
 
 
-/* MOBILE RESPONSIVE */
+/* ── replace everything from "MOBILE RESPONSIVE" downward ── */
+
+/* NAV HAMBURGER */
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 26px;
+  padding: 6px 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+}
+
+/* DRAWER BACKDROP */
+.drawer-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 98;
+}
+.drawer-backdrop.visible {
+  display: block;
+}
+
+/* SIDEBAR MOBILE HEADER */
+.sidebar-mobile-header {
+  display: none;
+}
+.sidebar-close-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s;
+}
+.sidebar-close-btn:hover { color: var(--text-primary); }
+
+/* ── TABLET (≤1024px) ── */
 @media (max-width: 1024px) {
   .page-layout {
     grid-template-columns: 1fr 300px;
@@ -402,24 +475,61 @@ input  { font-family: var(--font); }
   }
 }
 
+/* ── MOBILE (≤768px) ── */
 @media (max-width: 768px) {
+  /* Nav */
   .top-nav {
     height: 60px;
     justify-content: flex-start;
     overflow-x: auto;
     scrollbar-width: none;
+    gap: 2px;
   }
-  .top-nav::-webkit-scrollbar {
-    display: none;
+  .top-nav::-webkit-scrollbar { display: none; }
+  .nav-tab { padding: 8px 10px; font-size: 13px; flex-shrink: 0; }
+  .nav-hamburger { display: flex; }
+
+  /* Layout */
+  .page-layout { grid-template-columns: 1fr; }
+
+  /* Left sidebar — slide in from LEFT */
+  .left-sidebar {
+    display: flex;                 
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    max-width: 85vw;
+    z-index: 99;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    margin-top: 0;
+    border-radius: 0;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
   }
-  .nav-tab {
-    padding: 8px 10px;
-    font-size: 13px;
+  .left-sidebar.open { transform: translateX(0); }
+
+  /* Mobile header inside left drawer */
+  .sidebar-mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 10px 10px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
     flex-shrink: 0;
   }
-  .page-layout {
-    grid-template-columns: 1fr;
+  .sidebar-mobile-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
   }
+
+  /* Right sidebar — slide in from RIGHT */
   .right-sidebar {
     position: fixed;
     top: 0;
@@ -427,63 +537,32 @@ input  { font-family: var(--font); }
     bottom: 0;
     width: 100%;
     max-width: 400px;
-    z-index: 100;
+    z-index: 99;
     transform: translateX(100%);
     transition: transform 0.3s ease;
     margin-top: 0;
     border-radius: 0;
     height: 100vh;
   }
-  .right-sidebar.open {
-    transform: translateX(0);
-  }
-  .promo-strip {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-  .match-row {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-    padding: 12px;
-  }
-  .match-teams {
-    width: 100%;
-  }
-  .odds-group {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .odds-divider {
-    display: none;
-  }
-  .odds-col-headers {
-    display: none;
-  }
-  .main-content {
-    padding: 10px 8px;
-  }
+  .right-sidebar.open { transform: translateX(0); }
+
+  /* Content */
+  .promo-strip { grid-template-columns: 1fr; gap: 10px; }
+  .match-row { flex-direction: column; align-items: stretch; gap: 12px; padding: 12px; }
+  .match-teams { width: 100%; }
+  .odds-group { flex-wrap: wrap; justify-content: center; }
+  .odds-divider { display: none; }
+  .odds-col-headers { display: none; }
+  .main-content { padding: 10px 8px; }
 }
 
 @media (max-width: 640px) {
-  .promo-text {
-    font-size: 14px;
-  }
-  .promo-sub {
-    font-size: 14px;
-  }
-  .promo-card {
-    padding: 16px 14px;
-  }
+  .promo-text { font-size: 14px; }
+  .promo-sub { font-size: 14px; }
+  .promo-card { padding: 16px 14px; }
 }
 
 @media (max-width: 480px) {
-  .odd-btn {
-    min-width: 48px;
-    height: 36px;
-  }
-  .more-btn {
-    min-width: 42px;
-    height: 36px;
-  }
+  .odd-btn { min-width: 48px; height: 36px; }
+  .more-btn { min-width: 42px; height: 36px; }
 }
