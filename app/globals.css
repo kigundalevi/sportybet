@@ -245,7 +245,7 @@ input  { font-family: var(--font); }
   position: absolute;
   right: -10px;
   bottom: -10px;
-  height: 110px;     /* control size */
+  height: 110px;     
   object-fit: contain;
   pointer-events: none;
 }
@@ -295,7 +295,7 @@ input  { font-family: var(--font); }
   gap: 8px;
   font-weight: 600;
   font-size: 14px;
-  position: relative; /* 👈 important */
+  position: relative; 
 }
 .sport-header::before {
   content: '';
@@ -419,10 +419,6 @@ input  { font-family: var(--font); }
 .col-header-sm { min-width: 46px; }
 .col-header-div { width: 1px; margin: 0 2px; }
 
-
-/* ── replace everything from "MOBILE RESPONSIVE" downward ── */
-
-/* NAV HAMBURGER */
 .nav-hamburger {
   display: none;
   background: none;
@@ -437,7 +433,6 @@ input  { font-family: var(--font); }
   border-radius: var(--radius-sm);
 }
 
-/* DRAWER BACKDROP */
 .drawer-backdrop {
   display: none;
   position: fixed;
@@ -449,7 +444,6 @@ input  { font-family: var(--font); }
   display: block;
 }
 
-/* SIDEBAR MOBILE HEADER */
 .sidebar-mobile-header {
   display: none;
 }
@@ -465,7 +459,6 @@ input  { font-family: var(--font); }
 }
 .sidebar-close-btn:hover { color: var(--text-primary); }
 
-/* ── TABLET (≤1024px) ── */
 @media (max-width: 1024px) {
   .page-layout {
     grid-template-columns: 1fr 300px;
@@ -475,9 +468,7 @@ input  { font-family: var(--font); }
   }
 }
 
-/* ── MOBILE (≤768px) ── */
 @media (max-width: 768px) {
-  /* Nav */
   .top-nav {
     height: 60px;
     justify-content: flex-start;
@@ -489,10 +480,8 @@ input  { font-family: var(--font); }
   .nav-tab { padding: 8px 10px; font-size: 13px; flex-shrink: 0; }
   .nav-hamburger { display: flex; }
 
-  /* Layout */
   .page-layout { grid-template-columns: 1fr; }
 
-  /* Left sidebar — slide in from LEFT */
   .left-sidebar {
     display: flex;                 
     flex-direction: column;

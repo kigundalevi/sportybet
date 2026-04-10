@@ -40,7 +40,6 @@ export default function LeftSidebar({ isOpen = false, onClose }: LeftSidebarProp
 
   return (
     <>
-      {/* Backdrop — rendered in DOM always, visibility via class */}
       <div
         className={`drawer-backdrop${isOpen ? ' visible' : ''}`}
         onClick={onClose}

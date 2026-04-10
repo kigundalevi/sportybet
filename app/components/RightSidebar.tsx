@@ -35,7 +35,7 @@ export default function RightSidebar() {
             boxShadow: '0 4px 12px rgba(22,163,74,0.4)',
           }}
         >
-          🎟️
+          <ion-icon name="pricetags" style={{color: '#cb2828'}}></ion-icon>
           <span style={{
             position: 'absolute',
             top: -4,

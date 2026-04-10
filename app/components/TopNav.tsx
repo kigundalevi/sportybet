@@ -8,7 +8,7 @@ const TABS = [
   { id: 'home',    label: 'Home',    icon: <ion-icon name="home-outline" /> },
   { id: 'live',    label: 'Live',    icon: null, live: true },
   { id: 'aviator', label: 'Aviator', icon: <ion-icon name="airplane-outline" style={{ color: 'red' }} /> },
-  { id: 'crash',   label: 'Crash',   icon: '🎲' },
+  { id: 'crash',   label: 'Crash',   icon:  <ion-icon name="dice" style={{ color: 'orange' }} /> },
   { id: 'league',  label: 'League',  icon: <ion-icon name="cash-outline" style={{ color: 'green' }} /> },
 ];
 

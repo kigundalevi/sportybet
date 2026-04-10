@@ -58,7 +58,7 @@ export default function HomePage() {
                 onClick={() => setActiveTab(tab)}
               >
                 {tab === 'Live' && (
-                  <span style={{
+                  <span style={{ marginRight: 5,
                     width: 7, height: 7, borderRadius: '50%',
                     background: activeTab === 'Live' ? '#fff' : '#ef4444',
                     display: 'inline-block',
