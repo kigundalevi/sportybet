@@ -72,7 +72,7 @@ export default function LeftSidebar({ isOpen = false, onClose }: LeftSidebarProp
           {QUICK_ACTIONS.map((a) => (
             <button key={a.label} className="qa-btn">
               <span className="qa-icon">{a.icon}</span>
-              <span>{a.label.split(' ')[0]}</span>
+              <span style={{ whiteSpace: 'nowrap', fontSize: '9px' }}>{a.label}</span>
             </button>
           ))}
         </div>

@@ -151,11 +151,14 @@ input  { font-family: var(--font); }
   background: none; 
   border: none;
   color: var(--text-secondary); 
-  font-size: 10px; 
+  font-size: 9px; 
   font-weight: 500;
   padding: 4px 2px; 
   border-radius: 6px; 
   transition: all 0.15s;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 60px;
 }
 .qa-btn:hover { color: var(--green); }
 .qa-icon {
@@ -368,7 +371,7 @@ input  { font-family: var(--font); }
 .odd-btn.selected .odd-label,
 .odd-btn.selected .odd-value { color: #fff; }
 .odd-label { font-size: 14px; font-weight: 800; color: var(--text-primary); letter-spacing: 0.03em; line-height: 1; margin-bottom: 6px; }
-.odd-value { font-size: 9px; font-weight: 700; color: var(--text-primary); line-height: 1.2; }
+.odd-value { font-size: 9px; font-weight: 600; color: var(--text-muted); line-height: 1.2; }
 
 .more-btn {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
