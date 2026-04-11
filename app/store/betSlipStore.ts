@@ -1,4 +1,3 @@
-
 import { create } from 'zustand';
 import { BetSelection } from '@/types';
 
@@ -6,7 +5,6 @@ interface BetSlipStore {
   selections: BetSelection[];
   isOpen: boolean;
   stake: number;
-
   addSelection: (selection: BetSelection) => void;
   removeSelection: (eventOddId: number) => void;
   hasSelection: (eventOddId: number) => boolean;
@@ -21,12 +19,11 @@ export const useBetSlipStore = create<BetSlipStore>((set, get) => ({
   isOpen: false,
   stake: 100,
 
-  // Toggle a selection: if already in slip, remove it; otherwise add
   addSelection: (selection) => {
-    const exists = get().selections.find(
+    const isSameOdd = get().selections.find(
       (s) => s.eventOddId === selection.eventOddId
     );
-    if (exists) {
+    if (isSameOdd) {
       set((state) => ({
         selections: state.selections.filter(
           (s) => s.eventOddId !== selection.eventOddId
@@ -34,7 +31,10 @@ export const useBetSlipStore = create<BetSlipStore>((set, get) => ({
       }));
     } else {
       set((state) => ({
-        selections: [...state.selections, selection],
+        selections: [
+          ...state.selections.filter((s) => s.matchId !== selection.matchId),
+          selection,
+        ],
         isOpen: true,
       }));
     }
@@ -49,10 +49,7 @@ export const useBetSlipStore = create<BetSlipStore>((set, get) => ({
     get().selections.some((s) => s.eventOddId === eventOddId),
 
   clearAll: () => set({ selections: [] }),
-
   setStake: (amount) => set({ stake: amount }),
-
   toggleOpen: () => set((state) => ({ isOpen: !state.isOpen })),
-
   setOpen: (open) => set({ isOpen: open }),
 }));
