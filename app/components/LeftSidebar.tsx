@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 interface LeftSidebarProps {
   isOpen?: boolean;
   onClose?: () => void;
+  onGameClick?: (gameId: string) => void;
 }
 
 const QUICK_ACTIONS = [
@@ -30,7 +31,7 @@ const TOP_LEAGUES = [
   { flag: '',    name: 'UEFA Champions League' },
 ];
 
-export default function LeftSidebar({ isOpen = false, onClose }: LeftSidebarProps) {
+export default function LeftSidebar({ isOpen = false, onClose, onGameClick }: LeftSidebarProps) {
   // Prevent background scroll when drawer is open on mobile
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
@@ -80,7 +81,7 @@ export default function LeftSidebar({ isOpen = false, onClose }: LeftSidebarProp
         {/* Top Games */}
         <div className="section-heading">Top Games</div>
         {TOP_GAMES.map((g) => (
-          <div key={g.id} className={`game-card ${g.cls}`}>
+          <div key={g.id} className={`game-card ${g.cls}`} onClick={() => onGameClick?.(g.id)} style={{ cursor: 'pointer' }}>
             <img src={g.image} alt={g.id} className="game-card-bg" />
           </div>
         ))}

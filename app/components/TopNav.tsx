@@ -2,6 +2,7 @@
 
 interface TopNavProps {
   onMenuClick?: () => void;
+  onHomeClick?: () => void;
 }
 
 const TABS = [
@@ -14,7 +15,7 @@ const TABS = [
 
 import { useState } from 'react';
 
-export default function TopNav({ onMenuClick }: TopNavProps) {
+export default function TopNav({ onMenuClick, onHomeClick }: TopNavProps) {
   const [active, setActive] = useState('home');
 
   return (
@@ -28,7 +29,10 @@ export default function TopNav({ onMenuClick }: TopNavProps) {
         <button
           key={tab.id}
           className={`nav-tab ${active === tab.id ? 'active' : ''}`}
-          onClick={() => setActive(tab.id)}
+          onClick={() => {
+            setActive(tab.id);
+            if (tab.id === 'home') onHomeClick?.();
+          }}
         >
           {tab.live ? (
             <>

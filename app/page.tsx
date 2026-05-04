@@ -20,6 +20,7 @@ const CONTENT_TABS = ['Highlights', 'Live', 'Upcoming'];
 export default function HomePage() {
   const [activeTab, setActiveTab]   = useState('Highlights');
   const [leftOpen,  setLeftOpen]    = useState(false);
+  const [selectedGame, setSelectedGame] = useState<string | null>(null);
 
   const groupedGames = useMemo(() => {
     return games.reduce<Record<string, Game[]>>((acc, g) => {
@@ -31,13 +32,21 @@ export default function HomePage() {
 
   return (
     <div>
-      <TopNav onMenuClick={() => setLeftOpen(true)} />
+      <TopNav onMenuClick={() => setLeftOpen(true)} onHomeClick={() => setSelectedGame(null)} />
 
       <div className="page-layout">
-        <LeftSidebar isOpen={leftOpen} onClose={() => setLeftOpen(false)} />
+        <LeftSidebar isOpen={leftOpen} onClose={() => setLeftOpen(false)} onGameClick={(gameId) => setSelectedGame(gameId)} />
 
         <main className="main-content">
-          <div className="promo-strip">
+          {selectedGame === 'aviator' && (
+            <iframe
+              src="https://stage.100hp.app/airjet_grm/test/?b=5f132e40ee5c0215e2b1ef1e66d088a4917cbe9f6fe576a912f65a38901e16fc1fc6125be1450e859fe3d50d2e44ee20950978129070174c32d0f25c43d45f7b952aee34c76d2347f16fbb42aa020981939e19da52f106091356a2f21064f40f2aff94c8f370c43d8dda1f926eb34fec1a0bd4e0effa440ddee8833a67416d73e1d8296d49e754106e66ccc3844b0297a8e5b61233fa5ee075896f4fafb40c9ff4151dfcdbd9e624e61e8f3e12.d56b150a69f4eff6ab7d7a4c374bd7ff.4096f4ba-22e6-486d-b5e9-80639fec596f&language=en&pik=019aea9c-ab29-7a4b-aa48-844140f9db9d"
+              style={{ width: '100%', height: '100%', border: 'none' }}
+              title="Aviator Game"
+            />
+          )}
+
+          {!selectedGame && <div className="promo-strip">
             {PROMO_CARDS.map((p, i) => (
               <div key={i} className="promo-card">
                 <div className="promo-content">
@@ -48,9 +57,9 @@ export default function HomePage() {
                 <img src={p.image} alt="promo" className="promo-image" />
               </div>
             ))}
-          </div>
+          </div>}
 
-          <div className="content-tabs">
+          {!selectedGame && <div className="content-tabs">
             {CONTENT_TABS.map((tab) => (
               <button
                 key={tab}
@@ -67,9 +76,9 @@ export default function HomePage() {
                 {tab}
               </button>
             ))}
-          </div>
+          </div>}
 
-          {Object.entries(groupedGames).map(([competition, compGames]) => (
+          {!selectedGame && Object.entries(groupedGames).map(([competition, compGames]) => (
             <div key={competition} className="sport-block">
               <div className="sport-header">
                 <span><ion-icon name="football-outline" style={{ fontSize: '30px' }} /></span>
